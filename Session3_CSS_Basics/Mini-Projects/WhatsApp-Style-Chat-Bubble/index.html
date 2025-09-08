@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="chat-bubbles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=50&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                 alt="Contact" class="contact-pic">
+            <div class="contact-info">
+                <h3>Sarah Johnson</h3>
+                <p>Online</p>
+            </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages">
+            <!-- Received message -->
+            <div class="message received">
+                <div class="message-bubble">
+                    Hey! How's your web development course going? 😊
+                </div>
+                <div class="message-time">2:30 PM</div>
+            </div>
+
+            <!-- Sent message -->
+            <div class="message sent">
+                <div class="message-bubble">
+                    It's amazing! Just learned CSS today and built some cool stuff 🎨
+                </div>
+                <div class="message-time">2:32 PM ✓✓</div>
+            </div>
+
+            <!-- Received message -->
+            <div class="message received">
+                <div class="message-bubble">
+                    That's awesome! Can you show me what you built?
+                </div>
+                <div class="message-time">2:33 PM</div>
+            </div>
+
+            <!-- Sent message -->
+            <div class="message sent">
+                <div class="message-bubble">
+                    Sure! I made an Instagram-style photo card and a product card for an online store. The hover effects are so cool! ✨
+                </div>
+                <div class="message-time">2:35 PM ✓✓</div>
+            </div>
+
+            <!-- Received message -->
+            <div class="message received">
+                <div class="message-bubble">
+                    Wow, you're learning fast! 🚀
+                </div>
+                <div class="message-time">2:36 PM</div>
+            </div>
+
+            <!-- Sent message -->
+            <div class="message sent">
+                <div class="message-bubble">
+                    Thanks! Next week we're learning JavaScript. Can't wait! 💻
+                </div>
+                <div class="message-time">2:38 PM ✓✓</div>
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input">
+            <input type="text" placeholder="Type a message..." class="message-input">
+            <button class="send-btn">➤</button>
+        </div>
+    </div>
+</body>
+</html>
