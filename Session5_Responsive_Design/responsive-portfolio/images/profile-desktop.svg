@@ -1,0 +1,6 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#4338ca"/>
+  <circle cx="150" cy="120" r="50" fill="#ffffff"/>
+  <path d="M75 240 Q150 210 225 240 L225 300 L75 300 Z" fill="#ffffff"/>
+  <text x="150" y="280" text-anchor="middle" fill="#4338ca" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Desktop</text>
+</svg>

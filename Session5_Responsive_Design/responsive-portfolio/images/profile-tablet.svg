@@ -1,0 +1,6 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#764ba2"/>
+  <circle cx="100" cy="80" r="35" fill="#ffffff"/>
+  <path d="M60 160 Q100 135 140 160 L140 200 L60 200 Z" fill="#ffffff"/>
+  <text x="100" y="185" text-anchor="middle" fill="#764ba2" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Tablet</text>
+</svg>

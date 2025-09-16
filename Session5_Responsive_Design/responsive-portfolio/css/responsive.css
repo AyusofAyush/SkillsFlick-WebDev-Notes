@@ -1,0 +1,154 @@
+/* Tablet Styles */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    /* Navigation */
+    .nav-toggle {
+        display: none;
+    }
+    
+    .nav-menu {
+        position: static;
+        display: flex;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        background: transparent;
+        width: auto;
+        box-shadow: none;
+    }
+    
+    .nav-menu li {
+        border: none;
+        margin-left: 2rem;
+    }
+    
+    .nav-menu a {
+        padding: 0.5rem 1rem;
+        color: #334155;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        border: none;
+    }
+    
+    .nav-menu a:hover {
+        background: #f1f5f9;
+        color: #2563eb;
+        transform: translateY(-1px);
+        border-radius: 6px;
+    }
+    
+    /* Hero */
+    .hero {
+        padding: 10rem 2rem 6rem;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .hero-description {
+        font-size: 1.125rem;
+    }
+    
+    /* Projects Grid */
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .project-card img {
+        height: 240px;
+    }
+    
+    /* Device Indicator */
+    .mobile-only {
+        display: none;
+    }
+    
+    .tablet-only {
+        display: inline-block;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    /* Hero */
+    .hero {
+        padding: 12rem 2rem 8rem;
+    }
+    
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.375rem;
+    }
+    
+    .hero-description {
+        font-size: 1.25rem;
+    }
+    
+    /* Projects Grid */
+    .project-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+    
+    /* Hover Effects */
+    .project-card {
+        transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    /* Device Indicator */
+    .tablet-only {
+        display: none;
+    }
+    
+    .desktop-only {
+        display: inline-block;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    
+    .project-grid {
+        gap: 4rem;
+    }
+    
+    .contact-links {
+        gap: 2rem;
+    }
+}

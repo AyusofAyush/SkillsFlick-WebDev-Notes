@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayush Raj - Web Developer</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#home" class="nav-brand">AR</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Responsive Design Indicator (Educational Purpose) -->
+    <div class="responsive-indicator">
+      <span class="device-indicator mobile-only">📱 Mobile View</span>
+      <span class="device-indicator tablet-only">📱 Tablet View</span>
+      <span class="device-indicator desktop-only">💻 Desktop View</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <img
+          src="images/profile-mobile.svg"
+          alt="Ayush Raj Profile"
+          class="profile-image"
+        />
+        <h1 class="hero-title">Ayush Raj</h1>
+        <p class="hero-subtitle">Full-Stack Web Developer</p>
+        <p class="hero-description">
+          Creating beautiful, responsive websites that work perfectly on all
+          devices
+        </p>
+        <a href="#projects" class="cta-button">View My Work</a>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <img
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&h=600&q=80"
+              alt="E-commerce Website"
+            />
+            <div class="project-info">
+              <h3>E-commerce Site</h3>
+              <p>Modern shopping platform built with React</p>
+              <div class="project-links">
+                <a href="#" class="btn-secondary">Live Demo</a>
+                <a href="#" class="btn-outline">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&h=600&q=80"
+              alt="Portfolio Website"
+            />
+            <div class="project-info">
+              <h3>Portfolio Website</h3>
+              <p>Responsive portfolio built with HTML, CSS & JavaScript</p>
+              <div class="project-links">
+                <a href="#" class="btn-secondary">Live Demo</a>
+                <a href="#" class="btn-outline">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&h=600&q=80"
+              alt="Task Management App"
+            />
+            <div class="project-info">
+              <h3>Task Manager</h3>
+              <p>Full-stack productivity app with real-time updates</p>
+              <div class="project-links">
+                <a href="#" class="btn-secondary">Live Demo</a>
+                <a href="#" class="btn-outline">GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              I'm a passionate web developer with expertise in creating
+              responsive, user-friendly websites. I love working with modern
+              technologies and believe in the power of clean, efficient code.
+            </p>
+            <p>
+              This portfolio demonstrates responsive design principles, showing
+              how content adapts beautifully across mobile, tablet, and desktop
+              devices.
+            </p>
+            <div class="skills">
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Responsive Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p>Let's work together to create something amazing!</p>
+        <div class="contact-links">
+          <a href="mailto:ayush@example.com" class="contact-btn">Email Me</a>
+          <a href="#" class="contact-btn">LinkedIn</a>
+          <a href="#" class="contact-btn">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
