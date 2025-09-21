@@ -1,0 +1,69 @@
+/* ===================================
+   CSS RESET - NORMALIZE STYLES
+   =================================== */
+
+/* Remove default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set better defaults for common elements */
+html {
+  font-size: 16px;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Remove list styling */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default button styling */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Remove default link styling */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Make images responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove default form element styling */
+input,
+select,
+textarea {
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+/* Remove focus outline (we'll add custom ones) */
+:focus {
+  outline: none;
+}
+
+/* Make sure hidden elements are hidden */
+[hidden] {
+  display: none !important;
+}
