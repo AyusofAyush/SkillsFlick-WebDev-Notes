@@ -1,0 +1,32 @@
+{
+  "name": "recipe-finder-app",
+  "version": "1.0.0",
+  "description": "A modern React app for finding and exploring recipes",
+  "scripts": {
+    "dev": "parcel index.html --port 3000",
+    "build": "parcel build index.html",
+    "start": "npm run dev"
+  },
+  "keywords": [
+    "react",
+    "recipe",
+    "food",
+    "frontend",
+    "parcel"
+  ],
+  "author": "React Learning Session",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.0",
+    "@parcel/transformer-js": "^2.10.0"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
