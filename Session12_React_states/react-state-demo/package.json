@@ -1,0 +1,29 @@
+{
+  "name": "react-state-demo",
+  "version": "1.0.0",
+  "description": "React State Management Demo - Session 12 Interactive Examples",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html --port 3000 --open",
+    "build": "parcel build src/index.html",
+    "clean": "rm -rf dist .parcel-cache"
+  },
+  "keywords": [
+    "react",
+    "state-management",
+    "hooks",
+    "useState",
+    "forms",
+    "interactive"
+  ],
+  "author": "Ayush Raj",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-react-refresh-wrap": "^2.16.0",
+    "parcel": "^2.16.0"
+  }
+}
