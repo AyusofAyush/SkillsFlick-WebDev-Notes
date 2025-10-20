@@ -1,0 +1,163 @@
+@import "./global.css";
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding: 2rem 1.5rem;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content-wrapper {
+  background: var(--bg-card);
+  border-radius: 1rem;
+  padding: 2.5rem 3rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 500px;
+  max-width: 100%;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  border-radius: var(--radius-lg);
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+
+.intro h1 {
+  margin-bottom: var(--spacing-md);
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.intro p {
+  font-size: 1.125rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.app-footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+/* Common Component Styles */
+.description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-content {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .content-wrapper {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .content-wrapper {
+    padding: 2rem 1.75rem;
+    min-height: 450px;
+    border-radius: 0.75rem;
+  }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .content-wrapper {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .content-wrapper {
+    padding: 1.5rem 1.25rem;
+    min-height: 400px;
+  }
+
+  .intro {
+    padding: 1.5rem;
+  }
+
+  .intro h1 {
+    font-size: 1.75rem;
+  }
+}
