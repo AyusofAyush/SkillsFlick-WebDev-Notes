@@ -1,0 +1,28 @@
+{
+  "name": "advanced-state-management-app",
+  "version": "1.0.0",
+  "description": "Advanced React concepts demo: Context API, useReducer, Auth & Theme Management",
+  "scripts": {
+    "start": "parcel src/index.html --port 3000",
+    "build": "parcel build src/index.html"
+  },
+  "keywords": [
+    "react",
+    "context-api",
+    "useReducer",
+    "state-management",
+    "authentication",
+    "theme-management"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.0",
+    "process": "^0.11.10"
+  }
+}
