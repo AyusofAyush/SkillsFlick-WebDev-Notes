@@ -1,0 +1,549 @@
+{
+  "info": {
+    "name": "Portfolio API",
+    "description": "Complete API testing collection for Portfolio API with all endpoints",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4000",
+      "type": "string"
+    },
+    {
+      "key": "api_url",
+      "value": "http://localhost:4000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Home & Health",
+      "item": [
+        {
+          "name": "Get API Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            }
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects",
+              "host": ["{{api_url}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "Get Projects with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects?page=1&limit=3",
+              "host": ["{{api_url}}"],
+              "path": ["projects"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "3"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Technology",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects?tech=react",
+              "host": ["{{api_url}}"],
+              "path": ["projects"],
+              "query": [
+                {
+                  "key": "tech",
+                  "value": "react"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects?category=frontend",
+              "host": ["{{api_url}}"],
+              "path": ["projects"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "frontend"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Featured Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects?featured=true",
+              "host": ["{{api_url}}"],
+              "path": ["projects"],
+              "query": [
+                {
+                  "key": "featured",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Sort Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects?sort=views&order=desc",
+              "host": ["{{api_url}}"],
+              "path": ["projects"],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "views"
+                },
+                {
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Project Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/stats",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Search Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/search?q=weather",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "weather"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Project",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/1",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Related Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/1/related",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "1", "related"]
+            }
+          }
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Project\",\n  \"description\": \"This is a test project created via Postman\",\n  \"tech\": [\"Node.js\", \"Express.js\", \"Testing\"],\n  \"category\": \"Backend\",\n  \"github\": \"https://github.com/test/project\",\n  \"featured\": false\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/projects",
+              "host": ["{{api_url}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Project\",\n  \"description\": \"This project has been updated\",\n  \"tech\": [\"React\", \"Node.js\", \"MongoDB\"],\n  \"category\": \"Full Stack\",\n  \"featured\": true\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/projects/1",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/6",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "6"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Skills",
+      "item": [
+        {
+          "name": "Get All Skills",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/skills",
+              "host": ["{{api_url}}"],
+              "path": ["skills"]
+            }
+          }
+        },
+        {
+          "name": "Get Skills (Flat Array)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/skills/flat",
+              "host": ["{{api_url}}"],
+              "path": ["skills", "flat"]
+            }
+          }
+        },
+        {
+          "name": "Get Skills Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/skills/stats",
+              "host": ["{{api_url}}"],
+              "path": ["skills", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Get Frontend Skills",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/skills/frontend",
+              "host": ["{{api_url}}"],
+              "path": ["skills", "frontend"]
+            }
+          }
+        },
+        {
+          "name": "Get Backend Skills",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/skills/backend",
+              "host": ["{{api_url}}"],
+              "path": ["skills", "backend"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "item": [
+        {
+          "name": "Get Complete About Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/about",
+              "host": ["{{api_url}}"],
+              "path": ["about"]
+            }
+          }
+        },
+        {
+          "name": "Get Basic Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/about/basic",
+              "host": ["{{api_url}}"],
+              "path": ["about", "basic"]
+            }
+          }
+        },
+        {
+          "name": "Get Contact Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/about/contact",
+              "host": ["{{api_url}}"],
+              "path": ["about", "contact"]
+            }
+          }
+        },
+        {
+          "name": "Get Experience",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/about/experience",
+              "host": ["{{api_url}}"],
+              "path": ["about", "experience"]
+            }
+          }
+        },
+        {
+          "name": "Get Education",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/about/education",
+              "host": ["{{api_url}}"],
+              "path": ["about", "education"]
+            }
+          }
+        },
+        {
+          "name": "Get Achievements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/about/achievements",
+              "host": ["{{api_url}}"],
+              "path": ["about", "achievements"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "Submit Contact Form",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ayush.raj Tester\",\n  \"email\": \"ayush.raj.tester@example.com\",\n  \"message\": \"This is a test message from Postman. Great API!\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/contact",
+              "host": ["{{api_url}}"],
+              "path": ["contact"]
+            }
+          }
+        },
+        {
+          "name": "Get All Messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/contact/messages",
+              "host": ["{{api_url}}"],
+              "path": ["contact", "messages"]
+            }
+          }
+        },
+        {
+          "name": "Get Single Message",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/contact/messages/1",
+              "host": ["{{api_url}}"],
+              "path": ["contact", "messages", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Testing",
+      "item": [
+        {
+          "name": "404 - Non-existent Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/nonexistent",
+              "host": ["{{api_url}}"],
+              "path": ["nonexistent"]
+            }
+          }
+        },
+        {
+          "name": "404 - Non-existent Project",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/999",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "999"]
+            }
+          }
+        },
+        {
+          "name": "400 - Invalid ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/projects/invalid",
+              "host": ["{{api_url}}"],
+              "path": ["projects", "invalid"]
+            }
+          }
+        },
+        {
+          "name": "400 - Missing Required Fields",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Incomplete Project\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/projects",
+              "host": ["{{api_url}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "400 - Invalid Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"invalid-email\",\n  \"message\": \"This should fail\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/contact",
+              "host": ["{{api_url}}"],
+              "path": ["contact"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
