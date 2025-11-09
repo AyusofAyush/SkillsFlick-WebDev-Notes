@@ -1,0 +1,19 @@
+{
+  "name": "session16-frontend",
+  "version": "1.0.0",
+  "description": "React frontend demonstrating Node.js and Backend concepts",
+  "scripts": {
+    "start": "parcel src/index.html --port 3000",
+    "build": "parcel build src/index.html",
+    "clean": "rm -rf dist .parcel-cache"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.10.0",
+    "parcel": "^2.10.0",
+    "process": "^0.11.10"
+  }
+}
