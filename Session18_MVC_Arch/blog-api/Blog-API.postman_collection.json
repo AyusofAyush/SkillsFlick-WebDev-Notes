@@ -1,0 +1,365 @@
+{
+  "info": {
+    "name": "Blog API - MVC Architecture",
+    "description": "Complete API testing collection for the Blog API built with Express.js MVC pattern. Includes all CRUD operations, filtering, searching, and error scenarios.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4000",
+      "type": "string"
+    },
+    {
+      "key": "api_url",
+      "value": "{{base_url}}/api/posts",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Info",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check if the API server is running"
+          }
+        },
+        {
+          "name": "API Information",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Get API information, version, and available endpoints"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Posts - CRUD",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Understanding MVC Architecture\",\n  \"content\": \"MVC is a design pattern that separates an application into three main components: Model, View, and Controller. This separation helps organize code better and makes it more maintainable and testable.\",\n  \"author\": \"Ayush Raj\",\n  \"category\": \"Technology\",\n  \"tags\": [\"MVC\", \"Architecture\", \"Express\"],\n  \"published\": true\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}",
+              "host": ["{{api_url}}"]
+            },
+            "description": "Create a new blog post"
+          }
+        },
+        {
+          "name": "Get All Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}",
+              "host": ["{{api_url}}"]
+            },
+            "description": "Retrieve all blog posts"
+          }
+        },
+        {
+          "name": "Get Post by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/1",
+              "host": ["{{api_url}}"],
+              "path": ["1"]
+            },
+            "description": "Get a specific post by ID"
+          }
+        },
+        {
+          "name": "Update Post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"MVC Architecture - Updated\",\n  \"content\": \"Updated content about MVC pattern with more details.\",\n  \"author\": \"Ayush Raj\",\n  \"category\": \"Technology\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/1",
+              "host": ["{{api_url}}"],
+              "path": ["1"]
+            },
+            "description": "Update an existing post"
+          }
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/1",
+              "host": ["{{api_url}}"],
+              "path": ["1"]
+            },
+            "description": "Delete a post by ID"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Posts - Features",
+      "item": [
+        {
+          "name": "Get Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/stats",
+              "host": ["{{api_url}}"],
+              "path": ["stats"]
+            },
+            "description": "Get blog statistics (total posts, views, likes, etc.)"
+          }
+        },
+        {
+          "name": "Search Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/search?q=MVC",
+              "host": ["{{api_url}}"],
+              "path": ["search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "MVC"
+                }
+              ]
+            },
+            "description": "Search posts by keyword"
+          }
+        },
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/categories",
+              "host": ["{{api_url}}"],
+              "path": ["categories"]
+            },
+            "description": "Get all available categories"
+          }
+        },
+        {
+          "name": "Like Post",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/1/like",
+              "host": ["{{api_url}}"],
+              "path": ["1", "like"]
+            },
+            "description": "Increment likes for a post"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Posts - Filtering",
+      "item": [
+        {
+          "name": "Filter by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}?category=Technology",
+              "host": ["{{api_url}}"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Technology"
+                }
+              ]
+            },
+            "description": "Filter posts by category"
+          }
+        },
+        {
+          "name": "Filter by Author",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}?author=John",
+              "host": ["{{api_url}}"],
+              "query": [
+                {
+                  "key": "author",
+                  "value": "John"
+                }
+              ]
+            },
+            "description": "Filter posts by author name"
+          }
+        },
+        {
+          "name": "Sort by Newest",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}?sortBy=newest",
+              "host": ["{{api_url}}"],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "newest"
+                }
+              ]
+            },
+            "description": "Sort posts by newest first"
+          }
+        },
+        {
+          "name": "Sort by Popular",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}?sortBy=popular",
+              "host": ["{{api_url}}"],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "popular"
+                }
+              ]
+            },
+            "description": "Sort posts by most views"
+          }
+        },
+        {
+          "name": "Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}?page=1&limit=5",
+              "host": ["{{api_url}}"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Get paginated results"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Scenarios",
+      "item": [
+        {
+          "name": "Invalid ID Format",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/invalid",
+              "host": ["{{api_url}}"],
+              "path": ["invalid"]
+            },
+            "description": "Test error handling for invalid ID format"
+          }
+        },
+        {
+          "name": "Post Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/999",
+              "host": ["{{api_url}}"],
+              "path": ["999"]
+            },
+            "description": "Test 404 error for non-existent post"
+          }
+        },
+        {
+          "name": "Missing Required Fields",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Test\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}",
+              "host": ["{{api_url}}"]
+            },
+            "description": "Test validation error for missing fields"
+          }
+        },
+        {
+          "name": "Invalid Route",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/invalid",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invalid"]
+            },
+            "description": "Test 404 for invalid route"
+          }
+        }
+      ]
+    }
+  ]
+}
