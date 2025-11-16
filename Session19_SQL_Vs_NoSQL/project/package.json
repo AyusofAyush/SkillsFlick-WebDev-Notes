@@ -1,0 +1,28 @@
+{
+  "name": "session19-sql-vs-nosql",
+  "version": "1.0.0",
+  "description": "Practical examples for SQL and NoSQL (MongoDB) queries and operations",
+  "main": "index.js",
+  "scripts": {
+    "test-connection": "node mongodb-examples/01-test-connection.js",
+    "crud-basic": "node mongodb-examples/02-crud-basic.js",
+    "crud-advanced": "node mongodb-examples/03-crud-advanced.js",
+    "query-operators": "node mongodb-examples/04-query-operators.js"
+  },
+  "keywords": [
+    "mongodb",
+    "sql",
+    "nosql",
+    "database",
+    "learning"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
