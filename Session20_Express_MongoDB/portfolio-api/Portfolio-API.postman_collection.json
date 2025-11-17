@@ -1,0 +1,804 @@
+{
+  "info": {
+    "name": "Portfolio API - Complete Test Collection",
+    "description": "Comprehensive testing collection for Portfolio API with MongoDB integration.\n\n**Features Tested:**\n- Health check & API info\n- CRUD operations (Create, Read, Update, Delete)\n- Advanced filtering & sorting\n- Pagination\n- Full-text search\n- Statistics & analytics\n- View/Like incrementing\n- Status management\n- Featured toggling\n- Error handling\n\n**Prerequisites:**\n- Server running on http://localhost:4000\n- MongoDB connected and running\n\n**Setup Instructions:**\n1. Import this collection into Postman\n2. Ensure server is running: `npm run dev`\n3. Run entire collection or individual requests\n4. Check console logs for detailed responses",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000",
+      "type": "string"
+    },
+    {
+      "key": "apiUrl",
+      "value": "{{baseUrl}}/api/projects",
+      "type": "string"
+    },
+    {
+      "key": "projectId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "0️⃣ System",
+      "item": [
+        {
+          "name": "Health Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has success field\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('success', true);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has timestamp\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('timestamp');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            },
+            "description": "Check if the API server is running and healthy."
+          },
+          "response": []
+        },
+        {
+          "name": "API Information",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has features array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('features');",
+                  "    pm.expect(jsonData.features).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Get API information including available endpoints and features."
+          },
+          "response": []
+        }
+      ],
+      "description": "System health and information endpoints"
+    },
+    {
+      "name": "1️⃣ Create",
+      "item": [
+        {
+          "name": "Create Featured E-Commerce Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has project data\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('success', true);",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData.data).to.have.property('_id');",
+                  "    ",
+                  "    // Save project ID for later tests",
+                  "    pm.collectionVariables.set('projectId', jsonData.data._id);",
+                  "});",
+                  "",
+                  "pm.test(\"Project has required fields\", function () {",
+                  "    var project = pm.response.json().data;",
+                  "    pm.expect(project).to.have.property('title');",
+                  "    pm.expect(project).to.have.property('description');",
+                  "    pm.expect(project).to.have.property('technologies');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"E-Commerce Platform\",\n  \"description\": \"A full-stack e-commerce platform built with MERN stack featuring user authentication, product catalog, shopping cart, and payment integration.\",\n  \"technologies\": [\"MongoDB\", \"Express.js\", \"React\", \"Node.js\", \"Stripe\"],\n  \"githubUrl\": \"https://github.com/testuser/ecommerce-platform\",\n  \"liveUrl\": \"https://myecommerce.example.com\",\n  \"featured\": true,\n  \"status\": \"completed\",\n  \"priority\": \"high\",\n  \"startDate\": \"2024-01-15\",\n  \"endDate\": \"2024-03-20\",\n  \"tags\": [\"fullstack\", \"ecommerce\", \"mern\"]\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}",
+              "host": ["{{apiUrl}}"]
+            },
+            "description": "Create a new featured project (E-Commerce Platform)."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Weather Dashboard Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Weather Dashboard\",\n  \"description\": \"Real-time weather dashboard using OpenWeather API with location-based forecasts and beautiful visualizations.\",\n  \"technologies\": [\"React\", \"TypeScript\", \"Chart.js\", \"OpenWeather API\"],\n  \"githubUrl\": \"https://github.com/testuser/weather-dashboard\",\n  \"featured\": false,\n  \"status\": \"in-progress\",\n  \"priority\": \"medium\",\n  \"startDate\": \"2024-04-01\",\n  \"tags\": [\"frontend\", \"api\", \"typescript\"]\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}",
+              "host": ["{{apiUrl}}"]
+            },
+            "description": "Create another project (Weather Dashboard) with different properties."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task Manager App",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Task Manager App\",\n  \"description\": \"Collaborative task management application with real-time updates, team workspaces, and productivity analytics.\",\n  \"technologies\": [\"Vue.js\", \"Firebase\", \"Tailwind CSS\", \"Socket.io\"],\n  \"githubUrl\": \"https://github.com/testuser/task-manager\",\n  \"featured\": true,\n  \"status\": \"planning\",\n  \"priority\": \"high\",\n  \"startDate\": \"2024-05-01\",\n  \"tags\": [\"productivity\", \"realtime\", \"vue\"]\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}",
+              "host": ["{{apiUrl}}"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "Create new projects with different configurations"
+    },
+    {
+      "name": "2️⃣ Read",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has pagination metadata\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('pagination');",
+                  "    pm.expect(jsonData.pagination).to.have.property('total');",
+                  "    pm.expect(jsonData.pagination).to.have.property('page');",
+                  "    pm.expect(jsonData.pagination).to.have.property('limit');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}",
+              "host": ["{{apiUrl}}"]
+            },
+            "description": "Retrieve all projects with default pagination."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project by ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has virtual properties\", function () {",
+                  "    var project = pm.response.json().data;",
+                  "    pm.expect(project).to.have.property('slug');",
+                  "    pm.expect(project).to.have.property('isActive');",
+                  "    pm.expect(project).to.have.property('engagementScore');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}"]
+            },
+            "description": "Get a specific project by its ID (includes virtual properties)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Projects with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?page=1&limit=2",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "2"
+                }
+              ]
+            },
+            "description": "Get projects with pagination (page 1, 2 items per page)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Projects Sorted",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?sort=-views",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "-views",
+                  "description": "Sort by views (descending)"
+                }
+              ]
+            },
+            "description": "Get projects sorted by views (highest first)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Projects with Field Selection",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?fields=title,description,technologies,status",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "fields",
+                  "value": "title,description,technologies,status"
+                }
+              ]
+            },
+            "description": "Get projects with only specific fields."
+          },
+          "response": []
+        }
+      ],
+      "description": "Retrieve projects with various options"
+    },
+    {
+      "name": "3️⃣ Filter & Search",
+      "item": [
+        {
+          "name": "Filter by Status (Completed)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?status=completed",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "completed"
+                }
+              ]
+            },
+            "description": "Filter projects by status (completed)."
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Featured",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?featured=true",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "featured",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "Get only featured projects."
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Technology",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?technology=React",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "technology",
+                  "value": "React"
+                }
+              ]
+            },
+            "description": "Filter projects that use React."
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Tag",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?tag=fullstack",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "fullstack"
+                }
+              ]
+            },
+            "description": "Filter projects by tag."
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Priority",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}?priority=high",
+              "host": ["{{apiUrl}}"],
+              "query": [
+                {
+                  "key": "priority",
+                  "value": "high"
+                }
+              ]
+            },
+            "description": "Filter projects by priority level."
+          },
+          "response": []
+        },
+        {
+          "name": "Full-text Search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/search?q=commerce",
+              "host": ["{{apiUrl}}"],
+              "path": ["search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "commerce"
+                }
+              ]
+            },
+            "description": "Perform full-text search across title and description."
+          },
+          "response": []
+        },
+        {
+          "name": "Find by Technology (Static Method)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/technology/React",
+              "host": ["{{apiUrl}}"],
+              "path": ["technology", "React"]
+            },
+            "description": "Find projects using a specific technology (uses static method)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Featured List (Static Method)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/featured/list?limit=5",
+              "host": ["{{apiUrl}}"],
+              "path": ["featured", "list"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Get featured projects using static method."
+          },
+          "response": []
+        }
+      ],
+      "description": "Filter and search projects"
+    },
+    {
+      "name": "4️⃣ Statistics",
+      "item": [
+        {
+          "name": "Get Projects Statistics",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Statistics has required fields\", function () {",
+                  "    var stats = pm.response.json().data;",
+                  "    pm.expect(stats).to.have.property('totalProjects');",
+                  "    pm.expect(stats).to.have.property('projectsByStatus');",
+                  "    pm.expect(stats).to.have.property('totalViews');",
+                  "    pm.expect(stats).to.have.property('totalLikes');",
+                  "    pm.expect(stats).to.have.property('topTechnologies');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/stats",
+              "host": ["{{apiUrl}}"],
+              "path": ["stats"]
+            },
+            "description": "Get comprehensive statistics (aggregation)."
+          },
+          "response": []
+        }
+      ],
+      "description": "Analytics and statistics"
+    },
+    {
+      "name": "5️⃣ Update",
+      "item": [
+        {
+          "name": "Update Project (Full Update)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated: A comprehensive full-stack e-commerce platform with advanced features including AI-powered recommendations.\",\n  \"priority\": \"medium\",\n  \"tags\": [\"fullstack\", \"ecommerce\", \"mern\", \"ai\"]\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}"]
+            },
+            "description": "Update project with new data."
+          },
+          "response": []
+        },
+        {
+          "name": "Increment Views",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}/view",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}", "view"]
+            },
+            "description": "Increment project view count (instance method)."
+          },
+          "response": []
+        },
+        {
+          "name": "Increment Likes",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}/like",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}", "like"]
+            },
+            "description": "Increment project like count (instance method)."
+          },
+          "response": []
+        },
+        {
+          "name": "Toggle Featured",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}/toggle-featured",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}", "toggle-featured"]
+            },
+            "description": "Toggle featured status (instance method)."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}/status",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}", "status"]
+            },
+            "description": "Update project status (instance method, auto-sets endDate if completed)."
+          },
+          "response": []
+        }
+      ],
+      "description": "Update projects and their properties"
+    },
+    {
+      "name": "6️⃣ Delete",
+      "item": [
+        {
+          "name": "Delete Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/{{projectId}}",
+              "host": ["{{apiUrl}}"],
+              "path": ["{{projectId}}"]
+            },
+            "description": "Delete a project by ID."
+          },
+          "response": []
+        }
+      ],
+      "description": "Delete projects"
+    },
+    {
+      "name": "7️⃣ Error Handling",
+      "item": [
+        {
+          "name": "Invalid ObjectId",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is present\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('success', false);",
+                  "    pm.expect(jsonData).to.have.property('error');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/invalid-id-123",
+              "host": ["{{apiUrl}}"],
+              "path": ["invalid-id-123"]
+            },
+            "description": "Test error handling for invalid MongoDB ObjectId."
+          },
+          "response": []
+        },
+        {
+          "name": "Non-existent Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiUrl}}/507f1f77bcf86cd799439011",
+              "host": ["{{apiUrl}}"],
+              "path": ["507f1f77bcf86cd799439011"]
+            },
+            "description": "Test 404 for non-existent project (valid ObjectId format)."
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Error (Missing Required Fields)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"AB\"\n}"
+            },
+            "url": {
+              "raw": "{{apiUrl}}",
+              "host": ["{{apiUrl}}"]
+            },
+            "description": "Test validation error for missing required fields."
+          },
+          "response": []
+        },
+        {
+          "name": "404 Route Not Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/nonexistent",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "nonexistent"]
+            },
+            "description": "Test 404 handler for undefined routes."
+          },
+          "response": []
+        }
+      ],
+      "description": "Test error handling scenarios"
+    }
+  ]
+}
