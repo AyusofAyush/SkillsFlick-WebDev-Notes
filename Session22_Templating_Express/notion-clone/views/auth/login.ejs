@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+
+  <div class="auth-page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="auth-logo">
+            <span class="logo-icon">📝</span>
+            <span class="logo-text">NoteMaster</span>
+          </div>
+          <h1>Welcome back</h1>
+          <p>Sign in to your account to continue</p>
+        </div>
+
+        <% if (error) { %>
+          <div class="alert alert-error">
+            <span>⚠️</span>
+            <%= error==='auth_required' ? 'Please log in to continue' : error %>
+          </div>
+          <% } %>
+
+            <form action="/login" method="POST" class="auth-form">
+              <div class="form-group">
+                <label for="username" class="form-label">
+                  <span>👤</span> Username
+                </label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username"
+                  value="<%= typeof oldInput !== 'undefined' ? oldInput.username || '' : '' %>" required autofocus />
+              </div>
+
+              <div class="form-group">
+                <label for="password" class="form-label">
+                  <span>🔒</span> Password
+                </label>
+                <input type="password" id="password" name="password" class="form-input"
+                  placeholder="Enter your password" required />
+                <div class="form-hint">
+                  Demo: Any password works for existing users
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+
+            <div class="auth-footer">
+              <p>Don't have an account? <a href="/register">Sign up</a></p>
+            </div>
+
+            <div class="demo-accounts">
+              <p class="demo-title">Demo Accounts:</p>
+              <ul>
+                <li><strong>admin</strong> - Admin user</li>
+                <li><strong>john_doe</strong> - Regular user with projects</li>
+                <li><strong>jane_smith</strong> - User with learning hub</li>
+              </ul>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>

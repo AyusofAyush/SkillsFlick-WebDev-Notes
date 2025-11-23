@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+
+  <div class="templates-page">
+    <div class="page-container">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1 class="page-title"><span>📋</span> Templates</h1>
+          <p class="page-subtitle">
+            Jumpstart your pages with pre-built templates
+          </p>
+        </div>
+      </div>
+
+      <% if (templates.length===0) { %>
+        <div class="empty-state">
+          <div class="empty-icon">📋</div>
+          <h2>No templates available</h2>
+          <p>Templates will help you create structured content faster</p>
+        </div>
+        <% } else { %>
+          <% const categories=[...new Set(templates.map(t=>
+            t.category))]; %> <% categories.forEach(category=> { %>
+              <section class="template-category">
+                <h2 class="category-title">
+                  <span>
+                    <%= category==='documentation' ? '📚' : category==='project' ? '📊' : category==='personal' ? '✍️' :
+                      category==='meeting' ? '📅' : '📋' %>
+                  </span>
+                  <%= category.charAt(0).toUpperCase() + category.slice(1) %>
+                </h2>
+
+                <div class="templates-grid">
+                  <% templates.filter(t=> t.category === category).forEach(template => {
+                    %>
+                    <a href="/templates/<%= template.id %>" class="template-card">
+                      <div class="template-card-icon">
+                        <%= template.icon %>
+                      </div>
+                      <div class="template-card-content">
+                        <h3 class="template-card-title">
+                          <%= template.name %>
+                        </h3>
+                        <p class="template-card-description">
+                          <%= template.description %>
+                        </p>
+                      </div>
+                      <div class="template-card-footer">
+                        <span class="template-badge">
+                          <%= template.blocks ? template.blocks.length : 0 %> blocks
+                        </span>
+                      </div>
+                    </a>
+                    <% }); %>
+                </div>
+              </section>
+              <% }); %>
+                <% } %>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>

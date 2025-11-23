@@ -1,0 +1,70 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="workspace-info">
+      <span class="workspace-icon">
+        <%= workspace.icon %>
+      </span>
+      <span class="workspace-name">
+        <%= workspace.name %>
+      </span>
+    </div>
+    <a href="/workspaces" class="workspace-switcher" title="Switch workspace">
+      <span>⚡</span>
+    </a>
+  </div>
+
+  <div class="sidebar-actions">
+    <a href="/workspaces/<%= workspace.id %>/pages/new" class="sidebar-action">
+      <span>➕</span> New Page
+    </a>
+    <a href="/workspaces/<%= workspace.id %>/pages/search" class="sidebar-action">
+      <span>🔍</span> Search
+    </a>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+    <% if (favoritePages && favoritePages.length> 0) { %>
+      <div class="nav-section">
+        <div class="nav-section-title"><span>⭐</span> Favorites</div>
+        <ul class="nav-list">
+          <% favoritePages.forEach(page=> { %>
+            <li class="nav-item">
+              <a href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" class="nav-link">
+                <span class="nav-icon">
+                  <%= page.icon %>
+                </span>
+                <span class="nav-text">
+                  <%= page.title %>
+                </span>
+              </a>
+            </li>
+            <% }); %>
+        </ul>
+      </div>
+      <div class="sidebar-divider"></div>
+      <% } %>
+
+        <div class="nav-section">
+          <div class="nav-section-title"><span>📄</span> Pages</div>
+          <ul class="nav-list">
+            <% if (pageTree && pageTree.length> 0) { %> <% pageTree.forEach(page=>
+                { %> <%- include('page-tree-item', { page, workspace, currentPageId: typeof currentPage !=='undefined' ?
+                  currentPage.id : null }) %>
+                  <% }); %>
+                    <% } else { %>
+                      <li class="nav-item nav-item-empty">
+                        <span class="nav-text-muted">No pages yet</span>
+                      </li>
+                      <% } %>
+          </ul>
+        </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="/workspaces/<%= workspace.id %>/edit" class="sidebar-footer-link">
+      <span>⚙️</span> Workspace Settings
+    </a>
+  </div>
+</aside>

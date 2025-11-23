@@ -1,0 +1,40 @@
+{
+  "name": "notemaster",
+  "version": "1.0.0",
+  "description": "A modern Notion-like workspace and note-taking application built with Express.js and EJS templating",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm run prestart && node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"API tests available in TESTING.md\"",
+    "lint:ejs": "find views -name '*.ejs' -exec ejslint {} \\;",
+    "prestart": "npm run lint:ejs",
+    "seed": "node seed.js"
+  },
+  "keywords": [
+    "notion-clone",
+    "note-taking",
+    "workspace",
+    "express",
+    "ejs",
+    "templating",
+    "collaboration"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.20.0"
+  },
+  "devDependencies": {
+    "ejs-lint": "^2.0.1",
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,129 @@
+<%- include('../partials/header') %>
+
+  <div class="workspace-layout">
+    <%- include('../partials/sidebar', { workspace, favoritePages, pageTree }) %>
+
+      <div class="workspace-main">
+        <div class="workspace-content">
+          <div class="workspace-welcome">
+            <h1 class="workspace-welcome-title">
+              <span>
+                <%= workspace.icon %>
+              </span>
+              <%= workspace.name %>
+            </h1>
+            <p class="workspace-welcome-text">
+              <%= workspace.isPublic ? '🌐 This is a public workspace' : '🔒 This is a private workspace' %>
+            </p>
+          </div>
+
+          <% if (favoritePages && favoritePages.length> 0) { %>
+            <section class="workspace-section">
+              <h2 class="section-title"><span>⭐</span> Favorites</h2>
+              <div class="pages-grid">
+                <% favoritePages.forEach(page=> { %>
+                  <a href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" class="page-card">
+                    <div class="page-card-icon">
+                      <%= page.icon %>
+                    </div>
+                    <div class="page-card-content">
+                      <h3 class="page-card-title">
+                        <%= page.title %>
+                      </h3>
+                      <p class="page-card-preview">
+                        <%= truncate(page.content, 100) %>
+                      </p>
+                      <div class="page-card-meta">
+                        <span class="meta-item">Updated <%= timeAgo(page.updatedAt) %></span>
+                      </div>
+                    </div>
+                  </a>
+                  <% }); %>
+              </div>
+            </section>
+            <% } %>
+
+              <section class="workspace-section">
+                <div class="section-header">
+                  <h2 class="section-title"><span>📄</span> Recent Pages</h2>
+                  <a href="/workspaces/<%= workspace.id %>/pages/new" class="btn btn-secondary">
+                    <span>➕</span> New Page
+                  </a>
+                </div>
+
+                <% if (rootPages && rootPages.length> 0) { %>
+                  <div class="pages-list">
+                    <% rootPages.slice(0, 10).forEach(page=> { %>
+                      <a href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" class="page-list-item">
+                        <div class="page-list-icon">
+                          <%= page.icon %>
+                        </div>
+                        <div class="page-list-content">
+                          <h4 class="page-list-title">
+                            <%= page.title %>
+                          </h4>
+                          <p class="page-list-preview">
+                            <%= truncate(page.content, 150) %>
+                          </p>
+                        </div>
+                        <div class="page-list-meta">
+                          <span class="meta-date">
+                            <%= timeAgo(page.updatedAt) %>
+                          </span>
+                          <% if (page.tags && page.tags.length> 0) { %>
+                            <div class="page-tags">
+                              <% page.tags.slice(0, 3).forEach(tag=> { %>
+                                <span class="tag">
+                                  <%= tag %>
+                                </span>
+                                <% }); %>
+                            </div>
+                            <% } %>
+                        </div>
+                      </a>
+                      <% }); %>
+                  </div>
+                  <% } else { %>
+                    <div class="empty-state-small">
+                      <div class="empty-icon">📄</div>
+                      <p>No pages yet. Create your first page to get started!</p>
+                      <a href="/workspaces/<%= workspace.id %>/pages/new" class="btn btn-primary">
+                        Create Page
+                      </a>
+                    </div>
+                    <% } %>
+              </section>
+
+              <% if (recentActivity && recentActivity.length> 0) { %>
+                <section class="workspace-section">
+                  <h2 class="section-title"><span>🕒</span> Recent Activity</h2>
+                  <div class="activity-list">
+                    <% recentActivity.forEach(activity=> { %>
+                      <div class="activity-item">
+                        <div class="activity-icon">
+                          <%= activity.action==='created' ? '➕' : activity.action==='updated' ? '✏️' : '🗑️' %>
+                        </div>
+                        <div class="activity-content">
+                          <p>
+                            <strong>
+                              <%= activity.action %>
+                            </strong>
+                            <%= activity.targetType %>
+                              <a href="/workspaces/<%= workspace.id %>/pages/<%= activity.targetId %>">
+                                <%= activity.targetName %>
+                              </a>
+                          </p>
+                          <span class="activity-time">
+                            <%= timeAgo(activity.timestamp) %>
+                          </span>
+                        </div>
+                      </div>
+                      <% }); %>
+                  </div>
+                </section>
+                <% } %>
+        </div>
+      </div>
+  </div>
+
+  <%- include('../partials/footer') %>

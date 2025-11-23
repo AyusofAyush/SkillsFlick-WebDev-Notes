@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+  <div class="error-page">
+    <div class="error-container">
+      <div class="error-content">
+        <div class="error-code">
+          <%= errorCode || 500 %>
+        </div>
+        <h1 class="error-title">
+          <%= errorCode===403 ? 'Access Denied' : 'Something Went Wrong' %>
+        </h1>
+        <p class="error-message">
+          <%= errorMessage || 'An unexpected error occurred. Please try again later.' %>
+        </p>
+        <% if (typeof errorStack !=='undefined' && errorStack) { %>
+          <details class="error-stack">
+            <summary>Error Details (Development Mode)</summary>
+            <pre><%= errorStack %></pre>
+          </details>
+          <% } %>
+            <div class="error-actions">
+              <a href="javascript:history.back()" class="btn btn-secondary">Go Back</a>
+              <a href="/" class="btn btn-primary">Go Home</a>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>

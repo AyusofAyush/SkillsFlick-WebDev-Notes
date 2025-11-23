@@ -1,0 +1,73 @@
+<%- include('../partials/header') %>
+
+  <div class="auth-page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="auth-logo">
+            <span class="logo-icon">📝</span>
+            <span class="logo-text">NoteMaster</span>
+          </div>
+          <h1>Create your account</h1>
+          <p>Start organizing your work today</p>
+        </div>
+
+        <% if (error) { %>
+          <div class="alert alert-error"><span>⚠️</span>
+            <%= error %>
+          </div>
+          <% } %>
+
+            <form action="/register" method="POST" class="auth-form">
+              <div class="form-group">
+                <label for="fullName" class="form-label">
+                  <span>👤</span> Full Name
+                </label>
+                <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your full name"
+                  value="<%= typeof oldInput !== 'undefined' ? oldInput.fullName || '' : '' %>" required autofocus />
+              </div>
+
+              <div class="form-group">
+                <label for="username" class="form-label">
+                  <span>🆔</span> Username
+                </label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Choose a username"
+                  pattern="[a-zA-Z0-9_]+" title="Only letters, numbers, and underscores allowed"
+                  value="<%= typeof oldInput !== 'undefined' ? oldInput.username || '' : '' %>" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label"> <span>📧</span> Email </label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email"
+                  value="<%= typeof oldInput !== 'undefined' ? oldInput.email || '' : '' %>" required />
+              </div>
+
+              <div class="form-group">
+                <label for="password" class="form-label">
+                  <span>🔒</span> Password
+                </label>
+                <input type="password" id="password" name="password" class="form-input"
+                  placeholder="Choose a strong password" minlength="6" required />
+              </div>
+
+              <div class="form-group">
+                <label for="confirmPassword" class="form-label">
+                  <span>🔒</span> Confirm Password
+                </label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-input"
+                  placeholder="Confirm your password" minlength="6" required />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                Create Account
+              </button>
+            </form>
+
+            <div class="auth-footer">
+              <p>Already have an account? <a href="/login">Sign in</a></p>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>

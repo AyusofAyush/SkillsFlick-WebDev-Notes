@@ -1,0 +1,85 @@
+<%- include('../partials/header') %>
+
+  <div class="workspace-layout">
+    <%- include('../partials/sidebar', { workspace, favoritePages, pageTree }) %>
+
+      <div class="workspace-main">
+        <div class="form-page">
+          <div class="form-container-wide">
+            <div class="form-header">
+              <h1 class="form-title"><span>📄</span> Create New Page</h1>
+              <p class="form-subtitle">Add a new page to your workspace</p>
+            </div>
+
+            <form action="/workspaces/<%= workspace.id %>/pages" method="POST" class="form">
+              <div class="form-row">
+                <div class="form-group form-group-icon">
+                  <label for="icon" class="form-label">
+                    <span>🎨</span> Icon
+                  </label>
+                  <input type="text" id="icon" name="icon" class="form-input" placeholder="📄" maxlength="10"
+                    value="📄" />
+                </div>
+
+                <div class="form-group form-group-title">
+                  <label for="title" class="form-label">
+                    <span>📝</span> Title
+                  </label>
+                  <input type="text" id="title" name="title" class="form-input" placeholder="Untitled" required
+                    autofocus />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="content" class="form-label">
+                  <span>💬</span> Content
+                </label>
+                <textarea id="content" name="content" class="form-textarea" rows="10"
+                  placeholder="Start writing..."></textarea>
+              </div>
+
+              <% if (templates && templates.length> 0) { %>
+                <div class="form-group">
+                  <label for="templateId" class="form-label">
+                    <span>📋</span> Use Template (Optional)
+                  </label>
+                  <select id="templateId" name="templateId" class="form-select">
+                    <option value="">-- No Template --</option>
+                    <% templates.forEach(template=> { %>
+                      <option value="<%= template.id %>">
+                        <%= template.icon %>
+                          <%= template.name %>
+                      </option>
+                      <% }); %>
+                  </select>
+                  <div class="form-hint">Select a template to pre-fill content</div>
+                </div>
+                <% } %>
+                  <% if (parentPage) { %>
+                    <input type="hidden" name="parentId" value="<%= parentPage.id %>" />
+                    <div class="form-info">
+                      <span>📑</span> This page will be created as a sub-page of "<%= parentPage.title %>"
+                    </div>
+                    <% } %>
+
+                      <div class="form-group">
+                        <label for="tags" class="form-label">
+                          <span>🏷️</span> Tags (comma-separated)
+                        </label>
+                        <input type="text" id="tags" name="tags" class="form-input"
+                          placeholder="e.g., project, important, draft" />
+                      </div>
+
+                      <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Create Page</button>
+                        <a href="/workspaces/<%= workspace.id %>" class="btn btn-secondary">
+                          Cancel
+                        </a>
+                      </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <%- include('../partials/footer') %>

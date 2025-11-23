@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+
+  <div class="workspaces-page">
+    <div class="page-container">
+      <div class="page-header">
+        <div class="page-header-content">
+          <h1 class="page-title"><span>🏢</span> My Workspaces</h1>
+          <p class="page-subtitle">Organize your work across different spaces</p>
+        </div>
+        <div class="page-header-actions">
+          <a href="/workspaces/new" class="btn btn-primary">
+            <span>➕</span> New Workspace
+          </a>
+        </div>
+      </div>
+
+      <% if (workspaces.length===0) { %>
+        <div class="empty-state">
+          <div class="empty-icon">🏢</div>
+          <h2>No workspaces yet</h2>
+          <p>Create your first workspace to start organizing your notes and docs</p>
+          <a href="/workspaces/new" class="btn btn-primary"> Create Workspace </a>
+        </div>
+        <% } else { %>
+          <div class="workspaces-grid">
+            <% workspaces.forEach(workspace=> { %>
+              <a href="/workspaces/<%= workspace.id %>" class="workspace-card">
+                <div class="workspace-card-header">
+                  <div class="workspace-icon">
+                    <%= workspace.icon %>
+                  </div>
+                  <div class="workspace-badge <%= workspace.isPublic ? 'badge-public' : 'badge-private' %>">
+                    <%= workspace.isPublic ? '🌐 Public' : '🔒 Private' %>
+                  </div>
+                </div>
+                <div class="workspace-card-body">
+                  <h3 class="workspace-title">
+                    <%= workspace.name %>
+                  </h3>
+                  <div class="workspace-meta">
+                    <div class="workspace-stats">
+                      <%= workspace.members.length %> member<%= workspace.members.length !==1 ? 's' : '' %>
+                          •
+                          <%= workspace.pageCount || 0 %> page<%= (workspace.pageCount || 0) !==1 ? 's' : '' %>
+                    </div>
+                    <span class="meta-item">
+                      <span>📄</span>
+                      <%= workspace.pageCount || 0 %> page<%= (workspace.pageCount || 0) !==1 ? 's' : '' %>
+                    </span>
+                  </div>
+                </div>
+                <div class="workspace-card-footer">
+                  <span class="workspace-updated">Updated <%= timeAgo(workspace.updatedAt) %></span>
+                </div>
+              </a>
+              <% }); %>
+          </div>
+          <% } %>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>

@@ -1,0 +1,128 @@
+<%- include('../partials/header') %>
+
+  <div class="template-detail-page">
+    <div class="page-container">
+      <div class="template-header">
+        <div class="template-header-content">
+          <div class="template-icon-large">
+            <%= template.icon %>
+          </div>
+          <div class="template-header-text">
+            <h1 class="template-title-large">
+              <%= template.name %>
+            </h1>
+            <p class="template-description-large">
+              <%= template.description %>
+            </p>
+            <div class="template-meta">
+              <span class="badge badge-category">
+                <%= template.category %>
+              </span>
+              <span class="meta-item">
+                <%= template.blocks ? template.blocks.length : 0 %> content blocks
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-actions">
+          <a href="<%= user && user.workspaces && user.workspaces.length > 0 ? '/workspaces/' + user.workspaces[0] + '/pages/new?templateId=' + template.id : '/login?returnTo=/templates/' + template.id %>"
+            class="btn btn-primary">
+            <span>➕</span> Use This Template
+          </a>
+          <a href="/templates" class="btn btn-secondary">
+            <span>⬅️</span> Back to Templates
+          </a>
+        </div>
+      </div>
+
+      <div class="template-preview">
+        <h2 class="section-title"><span>👁️</span> Preview</h2>
+
+        <div class="template-content-preview">
+          <% if (template.blocks && template.blocks.length> 0) { %>
+            <div class="page-blocks">
+              <% template.blocks.forEach(block=> { %>
+                <div class="block block-<%= block.type %>">
+                  <% if (block.type==='text' ) { %>
+                    <p>
+                      <%= block.content %>
+                    </p>
+                    <% } else if (block.type==='heading' ) { %>
+                      <h3>
+                        <%= block.content %>
+                      </h3>
+                      <% } else if (block.type==='list' ) { %>
+                        <ul>
+                          <% block.content.split('\n').forEach(item=> { %>
+                            <li>
+                              <%= item %>
+                            </li>
+                            <% }); %>
+                        </ul>
+                        <% } else if (block.type==='code' ) { %>
+                          <pre><code><%= block.content %></code></pre>
+                          <% } else if (block.type==='quote' ) { %>
+                            <blockquote>
+                              <%= block.content %>
+                            </blockquote>
+                            <% } else if (block.type==='divider' ) { %>
+                              <hr />
+                              <% } else { %>
+                                <div class="block-content">
+                                  <%= block.content %>
+                                </div>
+                                <% } %>
+                </div>
+                <% }); %>
+            </div>
+            <% } else { %>
+              <div class="empty-state-small">
+                <p>This template has no preview content</p>
+              </div>
+              <% } %>
+        </div>
+      </div>
+
+      <div class="template-info-section">
+        <h2 class="section-title"><span>ℹ️</span> About This Template</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>📝 Best For</h3>
+            <p>
+              <% if (template.category==='documentation' ) { %> Creating
+                comprehensive documentation, guides, and technical references <% } else if
+                  (template.category==='project' ) { %> Managing projects,
+                  tracking tasks, and organizing workflows <% } else if (template.category==='personal' ) { %> Personal
+                    notes, journaling,
+                    and daily planning <% } else if (template.category==='meeting' ) { %> Meeting notes, agendas, and
+                      action items <% } else { %> General
+                        purpose content organization <% } %>
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>🎯 Key Features</h3>
+            <ul>
+              <li>Pre-structured content blocks</li>
+              <li>Easy to customize and extend</li>
+              <li>Consistent formatting</li>
+              <li>Ready to use immediately</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>🚀 How to Use</h3>
+            <ol>
+              <li>Click "Use This Template" button</li>
+              <li>Choose or create a workspace</li>
+              <li>Give your page a title</li>
+              <li>Customize the content to your needs</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>

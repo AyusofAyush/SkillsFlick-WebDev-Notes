@@ -1,0 +1,26 @@
+<li
+  class="nav-item <%= page.children && page.children.length > 0 ? 'has-children' : '' %> <%= currentPageId === page.id ? 'active' : '' %>">
+  <div class="nav-item-wrapper">
+    <% if (page.children && page.children.length> 0) { %>
+      <button class="nav-toggle" onclick="return togglePageChildren(this, event);" type="button">
+        <span class="toggle-icon">▶</span>
+      </button>
+      <% } %>
+        <a href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" class="nav-link">
+          <span class="nav-icon">
+            <%= page.icon %>
+          </span>
+          <span class="nav-text">
+            <%= page.title %>
+          </span>
+        </a>
+  </div>
+
+  <% if (page.children && page.children.length> 0) { %>
+    <ul class="nav-list nav-list-nested">
+      <% page.children.forEach(childPage=> { %> <%- include('page-tree-item', { page: childPage, workspace,
+          currentPageId }) %>
+          <% }); %>
+    </ul>
+    <% } %>
+</li>

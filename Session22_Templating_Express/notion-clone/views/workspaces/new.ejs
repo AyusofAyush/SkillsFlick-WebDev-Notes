@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+  <div class="form-page">
+    <div class="form-container">
+      <div class="form-header">
+        <h1 class="form-title"><span>🏢</span> Create New Workspace</h1>
+        <p class="form-subtitle">Organize your work in separate spaces</p>
+      </div>
+
+      <form action="/workspaces" method="POST" class="form">
+        <div class="form-group">
+          <label for="name" class="form-label">
+            <span>📝</span> Workspace Name
+          </label>
+          <input type="text" id="name" name="name" class="form-input" placeholder="e.g., Personal, Work, Projects"
+            required autofocus />
+        </div>
+
+        <div class="form-group">
+          <label for="icon" class="form-label">
+            <span>🎨</span> Icon (Emoji)
+          </label>
+          <input type="text" id="icon" name="icon" class="form-input" placeholder="e.g., 🏢, 💼, 🎯" maxlength="10" />
+          <div class="form-hint">Choose an emoji to represent your workspace</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" name="isPublic" value="true" />
+            <span class="checkbox-label">
+              <span>🌐</span> Make this workspace public
+            </span>
+          </label>
+          <div class="form-hint">Public workspaces can be viewed by anyone</div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Create Workspace</button>
+          <a href="/workspaces" class="btn btn-secondary"> Cancel </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>

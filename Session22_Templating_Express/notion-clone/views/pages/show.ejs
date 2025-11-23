@@ -1,0 +1,149 @@
+<%- include('../partials/header') %>
+
+<div class="workspace-layout">
+  <%- include('../partials/sidebar', { workspace, favoritePages, pageTree }) %>
+
+  <div class="workspace-main">
+    <div class="page-detail">
+      <div class="page-breadcrumbs">
+        <% breadcrumbs.forEach((crumb, index) => { %> <% if (index > 0) { %>
+        <span class="breadcrumb-separator">/</span>
+        <% } %>
+        <a
+          href="/workspaces/<%= workspace.id %>/pages/<%= crumb.id %>"
+          class="breadcrumb-item"
+        >
+          <%= crumb.title %>
+        </a>
+        <% }); %>
+      </div>
+
+      <div class="page-header-section">
+        <div class="page-header-main">
+          <div class="page-icon-large"><%= page.icon %></div>
+          <h1 class="page-title-large"><%= page.title %></h1>
+        </div>
+
+        <div class="page-actions">
+          <form
+            action="/workspaces/<%= workspace.id %>/pages/<%= page.id %>/favorite"
+            method="POST"
+            class="inline-form"
+          >
+            <button
+              type="submit"
+              class="btn-icon"
+              title="<%= page.isFavorite ? 'Remove from favorites' : 'Add to favorites' %>"
+            >
+              <%= page.isFavorite ? '⭐' : '☆' %>
+            </button>
+          </form>
+
+          <a
+            href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>/edit"
+            class="btn btn-secondary"
+          >
+            <span>✏️</span> Edit
+          </a>
+
+          <form
+            action="/workspaces/<%= workspace.id %>/pages/<%= page.id %>/delete"
+            method="POST"
+            class="inline-form"
+            onsubmit="return confirm('Are you sure you want to delete this page?');"
+          >
+            <button type="submit" class="btn btn-danger">
+              <span>🗑️</span> Delete
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="page-meta-info">
+        <span class="meta-item">
+          <span>📅</span> Created <%= formatDate(page.createdAt) %>
+        </span>
+        <span class="meta-item">
+          <span>🕒</span> Updated <%= timeAgo(page.updatedAt) %>
+        </span>
+        <% if (page.tags && page.tags.length > 0) { %>
+        <div class="page-tags">
+          <% page.tags.forEach(tag => { %>
+          <span class="tag"><%= tag %></span>
+          <% }); %>
+        </div>
+        <% } %>
+      </div>
+
+      <div class="page-content-area">
+        <div class="page-content-text"><%= page.content %></div>
+
+        <% if (blocks && blocks.length > 0) { %>
+        <div class="page-blocks">
+          <% blocks.forEach(block => { %>
+          <div class="block block-<%= block.type %>">
+            <% if (block.type === 'text') { %>
+            <p><%= block.content %></p>
+            <% } else if (block.type === 'heading') { %>
+            <h3><%= block.content %></h3>
+            <% } else if (block.type === 'list') { %>
+            <ul>
+              <% block.content.split('\n').forEach(item => { %>
+              <li><%= item %></li>
+              <% }); %>
+            </ul>
+            <% } else if (block.type === 'code') { %>
+            <pre><code><%= block.content %></code></pre>
+            <% } else if (block.type === 'quote') { %>
+            <blockquote><%= block.content %></blockquote>
+            <% } else if (block.type === 'divider') { %>
+            <hr />
+            <% } else { %>
+            <div class="block-content"><%= block.content %></div>
+            <% } %>
+          </div>
+          <% }); %>
+        </div>
+        <% } %>
+      </div>
+
+      <% if (childPages && childPages.length > 0) { %>
+      <div class="child-pages-section">
+        <h2 class="section-title"><span>📑</span> Sub-pages</h2>
+        <div class="pages-grid">
+          <% childPages.forEach(child => { %>
+          <a
+            href="/workspaces/<%= workspace.id %>/pages/<%= child.id %>"
+            class="page-card"
+          >
+            <div class="page-card-icon"><%= child.icon %></div>
+            <div class="page-card-content">
+              <h3 class="page-card-title"><%= child.title %></h3>
+              <p class="page-card-preview">
+                <%= truncate(child.content, 100) %>
+              </p>
+              <div class="page-card-meta">
+                <span class="meta-item"
+                  >Updated <%= timeAgo(child.updatedAt) %></span
+                >
+              </div>
+            </div>
+          </a>
+          <% }); %>
+        </div>
+      </div>
+      <% } %>
+
+      <div class="page-bottom-actions">
+        <a
+          href="/workspaces/<%= workspace.id %>/pages/new?parentId=<%= page.id %>"
+          class="btn btn-secondary"
+        >
+          <span>➕</span> Add Sub-page
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

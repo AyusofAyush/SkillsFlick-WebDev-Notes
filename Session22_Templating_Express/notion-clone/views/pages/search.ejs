@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+
+  <div class="workspace-layout">
+    <%- include('../partials/sidebar', { workspace, favoritePages, pageTree }) %>
+
+      <div class="workspace-main">
+        <div class="search-page">
+          <div class="search-header">
+            <h1 class="page-title"><span>🔍</span> Search Results</h1>
+            <form action="/workspaces/<%= workspace.id %>/pages/search" method="GET" class="search-form">
+              <input type="text" name="q" class="search-input" placeholder="Search pages..." value="<%= query %>"
+                autofocus />
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </div>
+
+          <% if (query) { %>
+            <div class="search-results">
+              <p class="search-results-count">
+                Found <strong>
+                  <%= results.length %>
+                </strong> page<%= results.length !==1 ? 's' : '' %> matching "<strong>
+                    <%= query %>
+                  </strong>"
+              </p>
+
+              <% if (results.length> 0) { %>
+                <div class="pages-list">
+                  <% results.forEach(page=> { %>
+                    <a href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" class="page-list-item">
+                      <div class="page-list-icon">
+                        <%= page.icon %>
+                      </div>
+                      <div class="page-list-content">
+                        <h3 class="page-list-title">
+                          <%= page.title %>
+                            <% if (page.isFavorite) { %>
+                              <span class="badge-favorite">⭐</span>
+                              <% } %>
+                        </h3>
+                        <p class="page-list-preview">
+                          <%= truncate(page.content, 200) %>
+                        </p>
+                      </div>
+                      <div class="page-list-meta">
+                        <span class="meta-date">
+                          <%= timeAgo(page.updatedAt) %>
+                        </span>
+                        <% if (page.tags && page.tags.length> 0) { %>
+                          <div class="page-tags">
+                            <% page.tags.slice(0, 3).forEach(tag=> { %>
+                              <span class="tag">
+                                <%= tag %>
+                              </span>
+                              <% }); %>
+                          </div>
+                          <% } %>
+                      </div>
+                    </a>
+                    <% }); %>
+                </div>
+                <% } else { %>
+                  <div class="empty-state">
+                    <div class="empty-icon">🔍</div>
+                    <h2>No results found</h2>
+                    <p>Try different keywords or check your spelling</p>
+                  </div>
+                  <% } %>
+            </div>
+            <% } else { %>
+              <div class="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h2>Search your workspace</h2>
+                <p>Enter keywords to find pages by title or content</p>
+              </div>
+              <% } %>
+        </div>
+      </div>
+  </div>
+
+  <%- include('../partials/footer') %>

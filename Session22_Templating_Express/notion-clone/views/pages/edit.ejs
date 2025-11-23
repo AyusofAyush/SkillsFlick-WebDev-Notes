@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+
+  <div class="workspace-layout">
+    <%- include('../partials/sidebar', { workspace, favoritePages, pageTree }) %>
+
+      <div class="workspace-main">
+        <div class="form-page">
+          <div class="form-container-wide">
+            <div class="form-header">
+              <h1 class="form-title"><span>✏️</span> Edit Page</h1>
+              <p class="form-subtitle">Update page content</p>
+            </div>
+
+            <form action="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" method="POST" class="form">
+              <div class="form-row">
+                <div class="form-group form-group-icon">
+                  <label for="icon" class="form-label">
+                    <span>🎨</span> Icon
+                  </label>
+                  <input type="text" id="icon" name="icon" class="form-input" value="<%= page.icon %>" maxlength="10" />
+                </div>
+
+                <div class="form-group form-group-title">
+                  <label for="title" class="form-label">
+                    <span>📝</span> Title
+                  </label>
+                  <input type="text" id="title" name="title" class="form-input" value="<%= page.title %>" required
+                    autofocus />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="content" class="form-label">
+                  <span>💬</span> Content
+                </label>
+                <textarea id="content" name="content" class="form-textarea" rows="15">
+<%= page.content %></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="tags" class="form-label">
+                  <span>🏷️</span> Tags (comma-separated)
+                </label>
+                <input type="text" id="tags" name="tags" class="form-input"
+                  value="<%= page.tags ? page.tags.join(', ') : '' %>" placeholder="e.g., project, important, draft" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-checkbox">
+                  <input type="checkbox" name="isFavorite" value="true" <%=page.isFavorite ? 'checked' : '' %>>
+                  <span class="checkbox-label">
+                    <span>⭐</span> Add to favorites
+                  </span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="/workspaces/<%= workspace.id %>/pages/<%= page.id %>" class="btn btn-secondary">
+                  Cancel
+                </a>
+              </div>
+            </form>
+
+            <div class="danger-zone">
+              <h3 class="danger-zone-title">⚠️ Danger Zone</h3>
+              <p>
+                Deleting this page will also remove all sub-pages and content
+                blocks.
+              </p>
+              <form action="/workspaces/<%= workspace.id %>/pages/<%= page.id %>/delete" method="POST"
+                onsubmit="return confirm('Are you sure you want to delete this page and all its sub-pages? This action cannot be undone.');">
+                <button type="submit" class="btn btn-danger">Delete Page</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <%- include('../partials/footer') %>
